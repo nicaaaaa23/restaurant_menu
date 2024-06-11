@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" type="text/css" href="resto_style.css">
+</head>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+body {
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.logo img {
+  height: 50px;
+  margin-right: 20px;
+}
+.total {
+  text-align: center;
+  margin: 20px 0;
+}
+.total label {
+  font-size: 2rem;
+}
+.total label span {
+  color: orange;
+  font-size: 2.5rem;
+}
+p {
+  text-align: center;
+  font-size: 4rem;
+  color: crimson;
+  padding: 10px 15px;
+}
+span {
+  color: orange;
+}
+h1 {
+  background-color: crimson;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  font-size: 2rem;
+}
+nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+nav a {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  transition: .4s ease;
+  margin: 5px 20px;
+  font-size: 1.2rem;
+  color: black;
+  padding: 10px 20px;
+}
+nav a:hover {
+  background-color: orange;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in;
+  width: 300px;
+  background-color: white;
+}
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.card:hover {
+  transform: scale(1.04);
+}
+.card-body {
+  padding: 15px;
+  text-align: center;
+}
+.card-body label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+.card-body p {
+  font-size: 1.2rem;
+  color: crimson;
+}
+.card-body input[type="number"] {
+  width: 60px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.card-body input[type="checkbox"] {
+  margin-right: 10px;
+}
+@media screen and (max-width: 1000px) {
+  nav a {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+  .card {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 768px) {
+  nav a {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+  .card {
+    width: 100%;
+  }
+  h1, p {
+    font-size: 1.5rem;
+  }
+}
+</style>
+
+<body>
+  <p>AJA LA<span>BRESTO</span></p>
+  <h1>Deals</h1>
+  <nav>
+    <div class="categories">
+      <a onclick="showCategory('maindish')">MAIN DISH</a>
+      <a onclick="showCategory('vegetables')">VEGETABLES</a>
+      <a onclick="showCategory('desserts')">DESSERTS</a>
+      <a onclick="showCategory('drinks')">DRINKS</a>
+      <a onclick="showCategory('addons')">ADD ONS</a>
+    </div>
+  </nav>
+  <div class="total">
+    <label>Total Price: <span id="totalPrice">0</span></label>
+  </div>
+  <div class="menu" id="menu"> 
+    <div class="category maindish">
+      <section class="items">
+        <div class="card">
+          <img src="chicken-adobo.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="main-course" value="149">ADOBO</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱149</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="kare-kare.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="main-course" value="119">KARE-KARE</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱119</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="sinigang-baboy.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="main-course" value="119">SINIGANG NA BABOY</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱119</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="menudo.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="main-course" value="99">MENUDO</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱99</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="chicken-inasal.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="main-course" value="149">CHICKEN INASAL</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱149</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="category vegetables" style="display:none;">
+      <section class="items">
+        <div class="card">
+          <img src="pakbet.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="vegetables" value="75">PAKBET</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱75</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="ginataang-gulay.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="vegetables" value="90">GINATAANG GULAY</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱90</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="chopsuey.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="vegetables" value="90">CHOPSUEY</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱90</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="category desserts" style="display:none;">
+      <section class="items">
+        <div class="card">
+          <img src="halo-halo.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="desserts" value="150">HALO-HALO</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱150</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="bibingka.webp">
+          <div class="card-body">
+            <label><input type="checkbox" class="desserts" value="75">BIBINGKA</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱75</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="sapin-sapin.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="desserts" value="35">SAPIN-SAPIN</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱35</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="category drinks" style="display:none;">
+      <section class="items">
+        <div class="card">
+          <img src="buko-juice.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="drinks" value="49">BUKO JUICE</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱49</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="mango-milkshake.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="drinks" value="60">MANGO SHAKE</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱60</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="brewed-coffee.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="drinks" value="39">BREWED COFFEE</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱39</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="category addons" style="display:none;">
+      <section class="items">
+        <div class="card">
+          <img src="soup.png">
+          <div class="card-body">
+            <label><input type="checkbox" class="addons" value="10">SOUP</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱10</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="lumpiang-shanghai.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="addons" value="20">LUMPIANG SHANGHAI</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱20</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="rice.jpg">
+          <div class="card-body">
+            <label><input type="checkbox" class="addons" value="20">RICE</label>
+            <input type="number" class="quantity" min="0" value="0">
+            <p>₱20</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+<script>
+function showCategory(category) {
+  const categories = document.querySelectorAll('.category');
+  categories.forEach(cat => {
+    cat.style.display = 'none';
+  });
+  document.querySelector(`.${category}`).style.display = 'block';
+}
+
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const quantities = document.querySelectorAll('.quantity');
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', updateTotal);
+});
+quantities.forEach(quantity => {
+  quantity.addEventListener('input', updateTotal);
+});
+
+function updateTotal() {
+  let totalPrice = 0;
+  checkboxes.forEach((checkbox, index) => {
+    if (checkbox.checked) {
+      const price = parseFloat(checkbox.value);
+      const quantity = parseInt(quantities[index].value);
+      totalPrice += price * quantity;
+    }
+  });
+  document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+}
+</script>
+  
+</body>
+</html>
